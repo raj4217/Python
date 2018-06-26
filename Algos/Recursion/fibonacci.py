@@ -15,6 +15,9 @@ def fibo2(n):
     if n == 0 or n == 1:
         return n
 
+    # if len(cache)!=None:
+    #     return cache[n]
+
     if n in cache.keys():
         return cache[n]
 
