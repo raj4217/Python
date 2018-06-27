@@ -1,51 +1,80 @@
 import time
 import threading
 
-total = 4
+
+class myThread(threading.Thread):
+    def __init__(self, number, style, *args, **kwargs):
+        super(myThread, self).__init__(*args, **kwargs)
+        self.number = number
+        self.style = style
+        self.start()
+
+    def run(self, *args, **kwargs):
+        print('thread started')
+        super(myThread, self).run(*args, **kwargs)
+        print('thread ended')
 
 
-def create_items():
-    global total
-    for i in range(10):
-        time.sleep(2)
-        print('added items')
-        total += 1
-    print('creation is done')
+def sleeper(num, style):
+    print('Sleeping for {} secs as {}'.format(num, style))
+    time.sleep(num)
 
 
-def create_items_2():
-    global total
-    for i in range(7):
-        time.sleep(1)
-        print('added items')
-        total += 1
-    print('creation is done')
+t = myThread(number=3, style='blue', target=sleeper, args=[3, 'blue'])
 
 
-def limit_items():
-    global total
-    while True:
-        if total > 5:
-            print('overload')
-            total -= 3
-            print('subtracted 3')
-        else:
-            time.sleep(1)
-            print('waiting')
+# _______________________________________________________________
 
 
-creator1 = threading.Thread(target=create_items)
-creator2 = threading.Thread(target=create_items_2)`
-limitor = threading.Thread(target=limit_items, daemon=True)  # daemon ends the infinite loop once the main method is over
-print(limitor.isDaemon())
+# class myThread(threading.Thread):
+#     def __init__(self, number, func, args):
+#         threading.Thread.__init__(self)
+#         self.number = number
+#         self.func = func
+#         self.args = args
 
-creator1.start()
-creator2.start()
-limitor.start()
-
-creator1.join()
-creator2.join()
-# limitor.join()
+#     def run(self):
+#         print(f'thread {self.number} has started')
+#         self.func(*self.args)
+#         print(f'thread {self.number} has finished')
 
 
-print('Ultimate total = {}'.format(total))
+# def double(number, cycles):
+#     for i in range(cycles):
+#         number += number
+#     print(number)
+
+
+# thread_list = []
+# for i in range(50):
+#     t = myThread(i + 1, double, [i, 3])
+#     thread_list.append(t)
+#     t.start()
+
+# for t in thread_list:
+#     t.join()
+
+
+# _______________________________________________________________
+
+
+# class myThread(threading.Thread):
+# def run(self):
+#     print('{} has started!'.format(self.getName()))
+#     try:
+#         if self._target:
+#             self._target(*self._args, **self._kwargs)
+#     finally:
+#         del self._target, self._args, self._kwargs
+#     print('{} has finished!'.format(self.getName()))
+
+
+# def sleeper(n, name):
+#     print('{} going to sleep for 2 secs \n'.format(name))
+#     time.sleep(n)
+#     print('{} has woken up \n'.format(name))
+
+
+# for i in range(4):
+#     t = myThread(target=sleeper, name='thread' + str(i + 1), args=(2, 'thread' + str(i + 1)))
+#     t.start()
