@@ -1,4 +1,4 @@
--#------------------test 1-----------------------
+#------------------test 1-----------------------
 
 # def run(self):
 #     """Method representing the thread's activity.

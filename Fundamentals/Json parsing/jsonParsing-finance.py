@@ -2,9 +2,9 @@ import json
 import pandas as pd
 import requests
 
-src = requests.get("https://finance.yahoo.com/webservice/v1/symbols/allcurrencies/quote?format=json")
+# src = requests.get("https://finance.yahoo.com/webservice/v1/symbols/allcurrencies/quote?format=json")
 
-data = json.loads(src.text)
+data = json.load(src.text)
 
 with open('finance.json', 'w') as wf:
     json.dump(data, wf, indent=2)

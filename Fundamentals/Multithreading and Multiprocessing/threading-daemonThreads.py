@@ -35,7 +35,7 @@ def limit_items():
 
 
 creator1 = threading.Thread(target=create_items)
-creator2 = threading.Thread(target=create_items_2)`
+creator2 = threading.Thread(target=create_items_2)
 limitor = threading.Thread(target=limit_items, daemon=True)  # daemon ends the infinite loop once the main method is over
 print(limitor.isDaemon())
 
@@ -45,7 +45,7 @@ limitor.start()
 
 creator1.join()
 creator2.join()
-# limitor.join()
+limitor.join()
 
 
 print('Ultimate total = {}'.format(total))

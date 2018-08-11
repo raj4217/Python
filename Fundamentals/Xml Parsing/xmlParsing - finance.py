@@ -14,7 +14,7 @@ currencies = []
 price = []
 for item in root.getchildren()[1]:
     for t in item.getchildren():
-        # print(t.attrib)
+        # print(t.attrib)l
         if t.attrib['name'] == 'name':
             currencies.append(t.text)
         if t.attrib['name'] == 'price':
