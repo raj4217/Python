@@ -14,6 +14,8 @@ def anagram2(s1, s2):
     s1 = s1.replace(' ', '').lower()
     s2 = s2.replace(' ', '').lower()
 
+
+
     # Edge Case to check if same number of letters
     if len(s1) != len(s2):
         return False
