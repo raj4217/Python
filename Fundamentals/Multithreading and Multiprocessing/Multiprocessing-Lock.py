@@ -13,7 +13,7 @@ def deposit(balance, lock):
 def withdraw(balance, lock):
     for n in range(100):
         time.sleep(0.01)
-        with lockb:
+        with lock:
             balance.value -= 1
 
 
